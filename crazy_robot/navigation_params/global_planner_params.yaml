@@ -1,0 +1,10 @@
+# http://wiki.ros.org/global_planner
+GlobalPlanner:
+
+  allow_unknown: true
+  default_tolerance: 0.1
+  # visualize_potential: true
+  use_dijkstra: false # true: dijkstra, false: A*
+  # use_quadratic: true
+  use_grid_path: true
+  old_navfn_behavior: false

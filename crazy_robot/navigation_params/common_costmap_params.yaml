@@ -1,0 +1,75 @@
+# http://wiki.ros.org/costmap_2d
+plugins:
+  - {name: static_map, type: "costmap_2d::StaticLayer"}
+  - {name: obstacles, type: "costmap_2d::ObstacleLayer"} # 3D obstacles: VoxelLayer
+  - {name: inflation, type: "costmap_2d::InflationLayer"}
+# global_frame: map
+robot_base_frame: base_footprint
+# transform_tolerance: 0.2
+# update_frequency: 5.0
+publish_frequency: 10.0
+rolling_window: true
+# always_send_full_costmap: false
+# width: 10
+# height: 10
+resolution: 0.05
+# origin_x: 0.0
+# origin_y: 0.0
+# https://github.com/ros-planning/navigation/blob/kinetic-devel/costmap_2d/cfg/Costmap2D.cfg
+# footprint: [[-0.20, -0.15], [-0.20, 0.15], [0.07, 0.15], [0.07, -0.15]]
+footprint: [[0.187, 0], [0.173, 0.072], [0.132, 0.132], [0.072, 0.173], [0, 0.187], [-0.072, 0.173], [-0.132, 0.132], [-0.173, 0.072], [-0.187, 0], [-0.173, -0.072], [-0.132, -0.132], [-0.072, -0.173], [0, -0.187], [0.072, -0.173], [0.132, -0.132], [0.173, -0.072]]
+robot_radius: 0.187
+footprint_padding: 0
+
+# http://wiki.ros.org/costmap_2d/hydro/staticmap
+static_map:
+  # unknown_cost_value: -1
+  lethal_cost_threshold: 52 # cartographer hit 55, miss 49
+  map_topic: map
+  first_map_only: false
+  # subscribe_to_update: false
+  # track_unknown_space: true # obstacles와 설명 상충
+  # use_maximum: false
+  # trinary_costmap: true
+
+# http://wiki.ros.org/costmap_2d/hydro/obstacles, Obstacle
+obstacles:
+  observation_sources: rplidar
+  rplidar:
+    topic: scan
+    sensor_frame: base_scan
+    # observation_persistence: 0.0
+    expected_update_rate: 0.2  # >0.1hz
+    data_type: LaserScan
+    clearing: true
+    marking: true
+    # max_obstacle_height: 2.0
+    # min_obstacle_height: 0.0
+    # obstacle_range: 2.5
+    # raytrace_range: 3.0
+    inf_is_valid: false
+  max_obstacle_height: 0.2
+  # obstacle_range: 2.5
+  # raytrace_range: 3.0
+  # track_unknown_space: false # staticmap과 설명 상충
+  # footprint_clearing_enabled: true
+  # https://github.com/ros-planning/navigation/blob/kinetic-devel/costmap_2d/cfg/ObstaclePlugin.cfg
+  # combination_method: 1
+
+# http://wiki.ros.org/costmap_2d/hydro/obstacles, Voxel
+  # origin_z: 0.0
+  # z_resolution: 0.05
+  # z_voxels: 4
+  # unknown_threshold: z_voxels
+  # mark_threshold: 0
+  # publish_voxel_map: false
+  # footprint_clearing_enabled: true
+
+# http://wiki.ros.org/costmap_2d/hydro/inflation
+inflation:
+  inflation_radius: 0.25
+  cost_scaling_factor: 10.0
+  # inflation_radius: 1
+  # cost_scaling_factor: 30.0
+  # https://github.com/ros-planning/navigation/blob/kinetic-devel/costmap_2d/cfg/InflationPlugin.cfg
+  # inflate_unknown: false

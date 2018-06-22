@@ -1,0 +1,6 @@
+local_costmap:
+
+  global_frame: map
+  update_frequency: 10.0
+  width: 2.0
+  height: 2.0
