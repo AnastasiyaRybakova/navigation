@@ -1,4 +1,4 @@
-Gmapping for Turtlebot3
+## Gmapping for Turtlebot3
 
 How to run:
 1. roscore
@@ -9,9 +9,9 @@ How to run:
 6. rosrun map_server map_saver -f ~/map
 
 
-Navigation 
+## Navigation
 
-How to run: 
+How to run:
 1. roscore
 2. roslaunch turtlebot3_bringup turtlebot3_robot.launch
 3. export TURTLEBOT3_MODEL=waffle
@@ -20,10 +20,10 @@ How to run:
 6. rviz
 
 
-Navigation stack
+## Navigation stack
 
 How to run:
-1. roscore 
+1. roscore
 2. ssh waffle@IP
 3. roslaunch turtlebot3_bringup turtlebot3_robot.launch
 4. roslaunch crazy_robot navigation_tb3.launch
